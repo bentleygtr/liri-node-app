@@ -2,7 +2,7 @@ require("dotenv").config();
 
 var keys = require("./keys.js");
 var fs = require("fs");
-var request = require("request");
+var Twitter = require("twitter");
 
 var Spotify = require("node-spotify-api");
 var nodeArg = process.argv;
@@ -10,6 +10,7 @@ var action = nodeArg[2];
 
 
 var spotify = new Spotify(keys.spotify);
+var client = new Twitter(keys.twitter);
 
 
 
@@ -33,10 +34,30 @@ function spotifyAPI() {
         }
     })
 }
+function twitterAPI() {   
+    var params = {
+    screen_name: 'nystic5523',
+    count: 20
+    };
+  client.get('statuses/user_timeline', params, function (error, tweets) {
+    if (!error) {
 
+        for (var i = 0; i < tweets.length; i++) {
+            var date = tweets[i].created_at;
+            console.log("@nystic5523: " + tweets[i].text + " Created At: " + date.substring(0, 19));
+
+            console.log("-----------------------");
+        }
+    }
+        });
+};
 
 
 
 if (action === "spotify-this-song"){
     spotifyAPI();
 }
+ if (action === "my-tweets") {
+    twitterAPI();
+}
+

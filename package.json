@@ -6,7 +6,8 @@
   "dependencies": {
     "dotenv": "^6.0.0",
     "file-system": "^2.2.2",
-    "node-spotify-api": "^1.0.7"
+    "node-spotify-api": "^1.0.7",
+    "twitter": "^1.7.1"
   },
   "devDependencies": {},
   "scripts": {

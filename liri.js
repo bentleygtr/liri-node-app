@@ -11,31 +11,25 @@ var action = nodeArg[2];
 
 var spotify = new Spotify(keys.spotify);
 
-console.log(spotify);
+
 
 function spotifyAPI() {
-    var args = {type: "track", query: nodeArg[3]}
+    var args = {type: 'track', query: nodeArg[3]}
 
-    spotify.search(args, function(error,data){
-        console.log(data);
-        var response = data.tracks.items;
-        var artist = JSON.parse(body).response.artists.name;
-        var song = JSON.parse(body).response.name;
-        var link = JSON.parse(body).response.album.href;
-        var album = JSON.parse(body).response.album.name;
+    spotify.search(args, function(error, data){
 
 
         if (error) throw error;
 
         if (!error){
-            console.log("----------------");
-            console.log("\nArtist: " + artist);
-            console.log("\n----------------");
-            console.log("\nTitle of Song: " + song);
-            console.log("\n----------------");
-            console.log("\nLink to song: " + link);
-            console.log("\n----------------");
-            console.log("\nAlbum name: " + album);
+            
+            console.log("Artist: " + data.tracks.items[0].album.artists[0].name);
+            console.log("\n---------------");
+            console.log("\nTitle of Song: " + data.tracks.items[0].name);
+            console.log("\n---------------");
+            console.log("\nLink to song: " + data.tracks.items[0].album.href);
+            console.log("\n---------------");
+            console.log("\nAlbum name: " + data.tracks.items[0].album.name);
         }
     })
 }

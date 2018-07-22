@@ -3,6 +3,7 @@ require("dotenv").config();
 var keys = require("./keys.js");
 var fs = require("fs");
 var Twitter = require("twitter");
+var
 
 var Spotify = require("node-spotify-api");
 var nodeArg = process.argv;
